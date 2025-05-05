@@ -10,33 +10,27 @@ class AdminPanel(QMainWindow):
         self.setWindowTitle("История регистрации пользователей")
         self.setGeometry(100, 100, 700, 500)
 
-        # Основной виджет и макет
         self.central_widget = QWidget()
         self.setCentralWidget(self.central_widget)
         self.layout = QVBoxLayout(self.central_widget)
 
-        # Метка для количества пользователей
         self.user_count_label = QLabel("Количество пользователей: 0")
         self.layout.addWidget(self.user_count_label)
 
-        # Таблица для пользователей
         self.table = QTableWidget()
         self.table.setColumnCount(5)
         self.table.setHorizontalHeaderLabels(["ID", "Chat ID", "Username", "Menstruation Active", "Дата регистрации"])
         self.table.horizontalHeader().setStretchLastSection(True)
         self.layout.addWidget(self.table)
 
-        # Кнопка обновления
         self.refresh_button = QPushButton("Обновить список")
         self.refresh_button.clicked.connect(self.refresh_users)
         self.layout.addWidget(self.refresh_button)
 
-        # Кнопка удаления
         self.delete_button = QPushButton("Удалить пользователя")
         self.delete_button.clicked.connect(self.delete_user)
         self.layout.addWidget(self.delete_button)
 
-        # Подключение к базе данных
         self.conn = psycopg2.connect(
             dbname="menstrual_cycle",
             user="postgres",

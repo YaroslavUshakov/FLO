@@ -1,20 +1,10 @@
+require('dotenv').config()
 const { Telegraf, Markup } = require('telegraf');
 const { Pool } = require('pg');
 const schedule = require('node-schedule');
 const { Calendar } = require('calendar');
 const path = require('path');
 
-// Отладка текущей директории
-console.log('Current directory:', process.cwd());
-console.log('Path to .env:', path.resolve('C:/Users/DigitalProductDesign/Desktop/Программы/Menstr/.env'));
-
-// Загрузка переменных окружения с отладкой
-const dotenvResult = require('dotenv').config({ path: 'C:/Users/DigitalProductDesign/Desktop/Программы/Menstr/.env' });
-if (dotenvResult.error) {
-  console.error('Ошибка загрузки .env:', dotenvResult.error);
-} else {
-  console.log('Переменные из .env загружены:', dotenvResult.parsed);
-}
 
 console.log('DB_USER:', process.env.DB_USER);
 console.log('API_TOKEN:', process.env.API_TOKEN);
